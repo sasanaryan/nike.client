@@ -1,9 +1,8 @@
 
+import Navbar from "./components/navbar/Navbar";
 function App() {
   return (
-    <div >
-      <p>nike client </p>
-    </div>
+    <Navbar/ >
   );
 }
 
