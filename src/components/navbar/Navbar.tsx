@@ -1,78 +1,110 @@
+import type { FC } from "react";
+import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
+import { Divider, Typography } from "@mui/material";
+import { Stack } from "@mui/system";
+import { icons } from "data";
+import NavbarMiddle from "components/navbar/NavbarMiddle";
+import NavbarBottom from "components/navbar/NavbarBottom";
 
-import { icons } from '../../data/data';
-import {mobile , tablet} from '../../theme'
-import { Divider, Typography } from '@mui/material';
-import {  Stack } from '@mui/system';
-import NavbarMiddle from './NavbarMiddle';
-import NavbarBottom from './NavbarBottom';
-import styled from '@emotion/styled'
-
-const Container = styled.div`
-background-color: #f7f7f7;
-height: 40px;
-${tablet({ display: "none" })}
-${mobile({ display: "none" })}
+const Logo = styled.img`
+  margin: 0px 5px 0px 5px;
+  position: relative;
+  top: 0px;
+  height: 20px;
+  font-weight: bold;
 `;
 
 const MenuIt = styled.span`
-text-decoration: none;
-position : relative;
-cursor: pointer;
-margin-left: 25px;
-text-decoration:none;
-&:hover {
+  color: black;
+  text-decoration: none;
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  margin-left: 25px;
+  text-decoration: none;
+  &:hover {
     color: gray;
   }
-${mobile({ fontSize: "12px", marginLeft: "20px" , right: "5px" })}
 `;
 
-const Logo = styled.img`
-margin: 0px 5px 0px 5px;
-position :relative;
-top:0px;
-height: 20px;
-font-weight: bold;
-${mobile({ fontSize: "24px" })}
+const StyledLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+  &:hover {
+    color: gray;
+  }
 `;
 
-
-const Navbar = () => {
-
-  
+const Navbar: FC = () => {
   return (
-    <Stack direction="column">
+    <>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        sx={{
+          backgroundColor: "#f7f7f7",
+          height: "40px",
+          width: "100%",
+          padding: "10px 20px",
+          display: { xs: "none", sm: "none", md: "flex" },
+        }}
+      >
+        <Stack direction="row" flex="1" alignItems="center">
+          <Logo src={icons.icon1} />
+          <Logo src={icons.icon2} />
+        </Stack>
+        <Stack
+          direction="row"
+          flex="1"
+          justifyContent="flex-end"
+          alignItems="center"
+          margin="0px 8px 0px 0px"
+        >
+          <Stack
+            direction="row"
+            divider={<Divider orientation="vertical" flexItem />}
+            spacing={2}
+          >
+            <MenuIt>
+              <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
+                Find a Store
+              </Typography>
+            </MenuIt>
+            <MenuIt>
+              <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
+                Help
+              </Typography>
+            </MenuIt>
 
-<Container>
-      <Stack direction='row' justifyContent='space-between' alignItems="center" margin='7px 15px 0 15px'>
-       <Stack direction='row'>
-        <Logo src={icons.icon1}/>
-        <Logo src={icons.icon2}/>
-       </Stack>
-       
-        <Stack direction="row"
-               divider={<Divider orientation="vertical" flexItem />}
-               spacing={2} >
-        <MenuIt>
-          <Typography sx={{fontSize:'12px', fontWeight: 'Medium'}}>Find a Store</Typography>
-         </MenuIt>
-         <MenuIt >
-          <Typography sx={{fontSize:'12px', fontWeight: 'Medium'}}>Help</Typography>
-         </MenuIt>
-         <MenuIt >
-          <Typography sx={{fontSize:'12px', fontWeight: 'Medium'}}>Join Us</Typography>
-         </MenuIt>
-         <MenuIt >
-          <Typography sx={{fontSize:'12px', fontWeight: 'Medium'}}>Sign In</Typography>
-         </MenuIt>
+            <Stack
+              direction="row"
+              divider={<Divider orientation="vertical" flexItem />}
+              spacing={2}
+            >
+              <MenuIt>
+                <StyledLink to="/register">
+                  <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
+                    Join Us
+                  </Typography>
+                </StyledLink>
+              </MenuIt>
+              <MenuIt>
+                <StyledLink to="/Login">
+                  <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
+                    Log In
+                  </Typography>
+                </StyledLink>
+              </MenuIt>
+            </Stack>
+          </Stack>
         </Stack>
       </Stack>
-    </Container>
-    <NavbarMiddle />
-    <NavbarBottom />
-    </Stack>
+      <NavbarMiddle />
+      <NavbarBottom />
+    </>
   );
 };
 
 export default Navbar;
-
-
