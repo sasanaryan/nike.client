@@ -1,14 +1,12 @@
+import type { FC } from "react";
+import Routes from "./route";
 
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
-function App() {
+const App: FC = () => {
   return (
     <>
-    <Navbar />
-    <Footer />
+      <Routes />
     </>
-    
   );
-}
+};
 
 export default App;
