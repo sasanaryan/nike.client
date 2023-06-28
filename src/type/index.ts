@@ -17,3 +17,11 @@ export interface UserRedux {
   favorites?: string[];
   accessToken?: string;
 }
+
+export interface CatItem {
+  id: number;
+  message: string;
+  img: string;
+  title: string;
+  cat: string;
+}
