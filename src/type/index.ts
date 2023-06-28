@@ -9,3 +9,11 @@ export interface FetchedProduct {
   existedSize: number[];
   createdAt?: Date;
 }
+
+export interface UserRedux {
+  _id?: string;
+  username: string;
+  email?: string;
+  favorites?: string[];
+  accessToken?: string;
+}
