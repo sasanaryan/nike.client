@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Divider, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
+import { useAppSelector } from "store/store";
 import { icons } from "data";
 import NavbarMiddle from "components/navbar/NavbarMiddle";
 import NavbarBottom from "components/navbar/NavbarBottom";
@@ -37,6 +38,8 @@ const StyledLink = styled(Link)`
 `;
 
 const Navbar: FC = () => {
+  const user = useAppSelector((state) => state.user.currentUser);
+
   return (
     <>
       <Stack
@@ -77,27 +80,34 @@ const Navbar: FC = () => {
                 Help
               </Typography>
             </MenuIt>
-
-            <Stack
-              direction="row"
-              divider={<Divider orientation="vertical" flexItem />}
-              spacing={2}
-            >
+            {user ? (
               <MenuIt>
-                <StyledLink to="/register">
-                  <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
-                    Join Us
-                  </Typography>
-                </StyledLink>
+                <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
+                  Hi, {user.username}
+                </Typography>
               </MenuIt>
-              <MenuIt>
-                <StyledLink to="/Login">
-                  <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
-                    Log In
-                  </Typography>
-                </StyledLink>
-              </MenuIt>
-            </Stack>
+            ) : (
+              <Stack
+                direction="row"
+                divider={<Divider orientation="vertical" flexItem />}
+                spacing={2}
+              >
+                <MenuIt>
+                  <StyledLink to="/register">
+                    <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
+                      Join Us
+                    </Typography>
+                  </StyledLink>
+                </MenuIt>
+                <MenuIt>
+                  <StyledLink to="/Login">
+                    <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
+                      Log In
+                    </Typography>
+                  </StyledLink>
+                </MenuIt>
+              </Stack>
+            )}
           </Stack>
         </Stack>
       </Stack>
