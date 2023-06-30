@@ -25,3 +25,18 @@ export interface CatItem {
   title: string;
   cat: string;
 }
+
+export interface CartProduct {
+  _id: string;
+  title: string;
+  desc: string;
+  img: string[];
+  categories: string;
+  gender: string;
+  price: number;
+  size: number;
+  quality: string;
+  selectedSize: string;
+  existedSize: number[];
+  orderedProductId: string;
+}
