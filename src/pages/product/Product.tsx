@@ -16,6 +16,7 @@ import { baseurl } from "config";
 import { useAppDispatch, useAppSelector } from "store/store";
 import { FetchedProduct } from "type";
 import { addProduct } from "store/cartRedux";
+import useFavorite from "feature/useFavorite";
 
 const Wrapper = styled.div`
   display: flex;
@@ -61,7 +62,7 @@ const Product: FC = () => {
   const [product, setProduct] = useState<FetchedProduct>(initialProduct);
   const [selectedSize, setSelectedSize] = useState<number>(0);
   const [notSelected, setNotselected] = useState(false);
-
+  const { isLiked, favoriteHandler } = useFavorite(product._id);
   const dispatch = useAppDispatch();
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -82,7 +83,13 @@ const Product: FC = () => {
     getProducts();
   }, [id]);
 
-  const favoritHandler = () => {};
+  const favoritHandler = () => {
+    if (user) {
+      favoriteHandler();
+    } else {
+      navigate("/login");
+    }
+  };
 
   const handelAddToCart = () => {
     if (selectedSize !== 0) {
@@ -127,7 +134,7 @@ const Product: FC = () => {
             </NormalButton>
             <NormalButton whiteBg onClick={favoritHandler}>
               <Checkbox
-                checked={true}
+                checked={isLiked}
                 icon={<FavoriteBorder />}
                 checkedIcon={<Favorite sx={{ color: "black" }} />}
               />
