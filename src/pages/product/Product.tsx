@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { FC } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { Checkbox, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import { Mockproducts } from "data";
 import { mobile, tablet } from "theme";
+import uuid from "react-uuid";
 import Navbar from "components/navbar";
 import Footer from "components/footer/Footer";
 import NormalButton from "components/button";
 import SizeGuide from "pages/product/SizeGuide";
 import ProductImage from "pages/product/ProductImage";
+import { baseurl } from "config";
+import { useAppDispatch, useAppSelector } from "store/store";
+import { FetchedProduct } from "type";
+import { addProduct } from "store/cartRedux";
 
 const Wrapper = styled.div`
   display: flex;
@@ -39,21 +45,61 @@ export const InfoContainer = styled.div`
   ${mobile({ padding: "10px" })}
 `;
 
+const initialProduct = {
+  _id: "1",
+  title: "",
+  desc: "",
+  img: ["", ""],
+  categories: "",
+  gender: "",
+  price: 1,
+  existedSize: [5, 6],
+};
+
 const Product: FC = () => {
   const example = Mockproducts[0];
+  const [product, setProduct] = useState<FetchedProduct>(initialProduct);
   const [selectedSize, setSelectedSize] = useState<number>(0);
   const [notSelected, setNotselected] = useState(false);
 
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const navigate = useNavigate();
+  const quality = "1";
+
+  const user = useAppSelector((state) => state.user.currentUser);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await baseurl.get(`products/find/` + id);
+        setProduct(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProducts();
+  }, [id]);
+
   const favoritHandler = () => {};
 
-  const handelAddToCart = () => {};
+  const handelAddToCart = () => {
+    if (selectedSize !== 0) {
+      const orderedProductId = uuid();
+      dispatch(
+        addProduct({ ...product, selectedSize, quality, orderedProductId })
+      );
+    } else {
+      setNotselected(true);
+    }
+  };
 
   const sizeHandle = (e: React.FormEvent<HTMLDivElement>, size: number) => {
     e.preventDefault();
     setSelectedSize(size);
     setNotselected(false);
   };
-
   return (
     <>
       <Navbar />
@@ -61,7 +107,10 @@ const Product: FC = () => {
         <Wrapper>
           <ProductImage images={example.img} />
           <InfoContainer>
-            <Typography variant="h5" sx={{ fontWeight: "medium" }}>
+            <Typography
+              variant="h5"
+              sx={{ fontWeight: "medium", marginTop: "10px" }}
+            >
               {example.title}
             </Typography>
             <Typography>{example.gender}'s shoe</Typography>
