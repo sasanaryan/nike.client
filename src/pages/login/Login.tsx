@@ -1,38 +1,45 @@
 import { useEffect, useState } from "react";
+import type { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoadingButton } from "@mui/lab";
 import { Box, Typography } from "@mui/material";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { object, string, TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FormInput from "../../components/formInput";
+import { useAppDispatch } from "store/store";
+import { login } from "services/apiCall";
+import FormInput from "components/formInput";
 
-const SignInSchema = object({
+const LogInSchema = object({
   username: string()
     .nonempty("UserName is required")
+    .min(2, "UserName must be more than 2 characters")
     .max(32, "UserName must be less than 100 characters"),
+
   password: string()
     .nonempty("Password is required")
     .min(8, "Password must be more than 8 characters")
     .max(32, "Password must be less than 32 characters"),
 });
 
-type SignInInput = TypeOf<typeof SignInSchema>;
-type registerUser = {
+type LogInInput = TypeOf<typeof LogInSchema>;
+
+interface loginUser {
   username: string;
   password: string;
-};
+}
 let initialUser = {
   username: "",
   password: "",
 };
 
-const Login = () => {
+const Login: FC = () => {
   const [loading, setLoading] = useState(false);
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [values, setValues] = useState<registerUser>(initialUser);
-  const methods = useForm<SignInInput>({
-    resolver: zodResolver(SignInSchema),
+  const [values, setValues] = useState<loginUser>(initialUser);
+  const dispatch = useAppDispatch();
+
+  const methods = useForm<LogInInput>({
+    resolver: zodResolver(LogInSchema),
   });
   const navigate = useNavigate();
 
@@ -41,13 +48,17 @@ const Login = () => {
     handleSubmit,
     formState: { isSubmitSuccessful, errors },
   } = methods;
-  interface other {
-    username: string;
-    password: string;
-  }
 
-  const onSubmitHandler: SubmitHandler<SignInInput> = (values) => {
-    setValues(values);
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      login(dispatch, values);
+      reset();
+      navigate(-1);
+    }
+  }, [isSubmitSuccessful]);
+
+  const onSubmitHandler: SubmitHandler<LogInInput> = (value) => {
+    setValues(value);
   };
 
   return (
@@ -58,7 +69,7 @@ const Login = () => {
         component="h1"
         sx={{ mb: "2rem" }}
       >
-        SinIn
+        LogIn
       </Typography>
       <FormProvider {...methods}>
         <Box
