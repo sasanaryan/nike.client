@@ -33,8 +33,18 @@ const userSlice = createSlice({
       state.isFatching = false;
       state.error = false;
     },
+    SetFavorite: (state, action: PayloadAction<string>) => {
+      if (state.currentUser !== null) {
+        state.currentUser?.favorites?.includes(action.payload)
+          ? (state.currentUser.favorites = state.currentUser?.favorites?.filter(
+              (i) => i !== action.payload
+            ))
+          : state.currentUser?.favorites?.push(action.payload);
+      }
+    },
   },
 });
 
-export const { Start, loginSuccess, Failure, logout } = userSlice.actions;
+export const { Start, loginSuccess, Failure, logout, SetFavorite } =
+  userSlice.actions;
 export default userSlice.reducer;
