@@ -1,3 +1,9 @@
+import { useEffect, useState } from "react";
+import type { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { literal, object, string, TypeOf } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Box,
   FormControlLabel,
@@ -5,14 +11,11 @@ import {
   FormHelperText,
   Typography,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-import { literal, object, string, TypeOf } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
 import { LoadingButton } from "@mui/lab";
 import Checkbox from "@mui/material/Checkbox";
-import FormInput from "../../components/formInput";
+import FormInput from "components/formInput";
+import { useAppDispatch } from "store/store";
+import { registerUser } from "services/apiCall";
 
 const registerSchema = object({
   username: string()
@@ -33,26 +36,25 @@ const registerSchema = object({
 });
 
 type RegisterInput = TypeOf<typeof registerSchema>;
-type registerUser = {
+interface registerUser {
   username: string;
   email: string;
   password: string;
   passwordConfirm: string;
   terms: boolean;
-};
+}
 let initialUser = {
   username: "",
   email: "",
   password: "",
   passwordConfirm: "",
-  terms: true,
+  terms: false,
 };
 
-const Register = () => {
+const Register: FC = () => {
   const [loading, setLoading] = useState(false);
-
   const [values, setValues] = useState<registerUser>(initialUser);
-
+  const dispatch = useAppDispatch();
   const methods = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
   });
@@ -64,11 +66,16 @@ const Register = () => {
     register,
     formState: { isSubmitSuccessful, errors },
   } = methods;
-  interface other {
-    username: string;
-    email: string;
-    password: string;
-  }
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      const { passwordConfirm, terms, ...other }: registerUser = values;
+
+      registerUser(dispatch, { ...other });
+      reset();
+      navigate(-1);
+    }
+  }, [isSubmitSuccessful]);
 
   const onSubmitHandler: SubmitHandler<RegisterInput> = (values) => {
     setValues(values);
