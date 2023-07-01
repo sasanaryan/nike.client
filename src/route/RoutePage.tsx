@@ -5,6 +5,7 @@ import Login from "pages/login";
 import Home from "pages/home";
 import Product from "pages/product";
 import { useAppSelector } from "store/store";
+import ProductList from "pages/productList/ProductList";
 
 const RoutePage: FC = () => {
   const user = useAppSelector((state) => state.user.currentUser);
@@ -12,6 +13,7 @@ const RoutePage: FC = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/products/:category?" element={<ProductList />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/register" element={user ? <Home /> : <Register />} />
         <Route path="/login" element={user ? <Home /> : <Login />} />
