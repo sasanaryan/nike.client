@@ -34,9 +34,15 @@ export interface CartProduct {
   categories: string;
   gender: string;
   price: number;
-  size: number;
   quality: string;
   selectedSize: string;
   existedSize: number[];
   orderedProductId: string;
+}
+
+export interface FilterProducts {
+  gender?: string;
+  range?: number[];
+  cat?: string;
+  sort?: string;
 }
