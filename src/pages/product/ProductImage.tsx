@@ -83,8 +83,9 @@ const ProductImage: FC<ProductImageProp> = ({ images }) => {
 
   return (
     <Stack
-      direction={{ xs: "column", md: "row", lg: "row" }}
+      direction={{ xs: "column-reverse", md: "row", lg: "row" }}
       gap={2}
+      order="2"
       flex="2.5"
       position="relative"
       height="100%"
@@ -107,7 +108,10 @@ const ProductImage: FC<ProductImageProp> = ({ images }) => {
       <Stack
         direction="row"
         position="absolute"
-        sx={{ bottom: "24px", right: "38px" }}
+        sx={{
+          bottom: { xs: "24px", sm: "100px", md: "24px" },
+          right: { xs: "24px", sm: "50px", md: "-30px" },
+        }}
         gap={2}
       >
         <Arrow isleft onClick={arrowLeftSide}>
