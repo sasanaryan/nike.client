@@ -1,15 +1,120 @@
-import { TextField } from "@mui/material";
-import React from "react";
+import React, { useRef, useState } from "react";
+import type { FC } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
+import { Search } from "@mui/icons-material";
+import { Stack } from "@mui/system";
+import CloseIcon from "@mui/icons-material/Close";
+import styled from "@emotion/styled";
+import { icons } from "data";
+import ResultSearch from "components/resulSearch";
+import {
+  Model,
+  Container,
+  Wrapper,
+  Clear,
+  SearchIcon,
+  Input,
+  NikeItem,
+  Cancle,
+  Logo,
+} from "components/searchBar/searchBar-style";
+
+const StyledLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+  &:hover {
+    color: gray;
+  }
+`;
+
+type eventOnChange = React.ChangeEvent<HTMLInputElement>;
+type eventOnClick = React.KeyboardEvent<HTMLDivElement>;
 
 interface SearchBarProp {
   setOpenSearchBar: React.Dispatch<React.SetStateAction<boolean>>;
   openSearchBar: boolean;
 }
-const SearchBar = ({ setOpenSearchBar, openSearchBar }: SearchBarProp) => {
+const SearchBar: FC<SearchBarProp> = ({ setOpenSearchBar, openSearchBar }) => {
+  const [searchWord, setSearchWord] = useState<string>("");
+  const navigate = useNavigate();
+  const ref = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    setOpenSearchBar(true);
+    ref?.current?.focus();
+  };
+
+  function handleChange(event: eventOnChange) {
+    setSearchWord(event.target.value);
+
+    setOpenSearchBar(true);
+  }
+
+  const reset = () => {
+    setSearchWord("");
+  };
+
+  const HandleCancele = () => {
+    setSearchWord("");
+    setOpenSearchBar(false);
+  };
+
+  const handleKeyDown = (event: eventOnClick) => {
+    if (event.key === "Enter") {
+      console.log("enter clicked");
+      navigate("/products", {
+        state: {
+          searchWord: searchWord,
+        },
+      });
+      setOpenSearchBar(false);
+      reset();
+      ref?.current?.blur();
+    }
+  };
+
   return (
-    <div>
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-    </div>
+    <Model openSearchBar={openSearchBar}>
+      <Container openSearchBar={openSearchBar}>
+        <NikeItem openSearchBar={openSearchBar}>
+          <StyledLink to="/">
+            <Logo src={icons.logo} />
+          </StyledLink>
+        </NikeItem>
+        <Stack
+          direction="row"
+          justifyContent="flex-end"
+          alignItems="center"
+          gap={3}
+          sx={{ flexGrow: 1 }}
+        >
+          <Wrapper display={openSearchBar}>
+            <SearchIcon display={openSearchBar} onClick={handleClick}>
+              <Search />
+            </SearchIcon>
+
+            <Input
+              type="text"
+              value={searchWord}
+              placeholder="Search"
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              display={openSearchBar}
+              ref={ref}
+            />
+
+            <Clear display={openSearchBar} onClick={reset}>
+              <CloseIcon />
+            </Clear>
+          </Wrapper>
+          <Cancle openSearchBar={openSearchBar} onClick={HandleCancele}>
+            <Typography fontWeight="500">Cancle</Typography>
+          </Cancle>
+        </Stack>
+        <ResultSearch searchWord={searchWord} openSearchBar={openSearchBar} />
+      </Container>
+    </Model>
   );
 };
 
