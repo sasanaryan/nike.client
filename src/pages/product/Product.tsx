@@ -17,6 +17,8 @@ import { useAppDispatch, useAppSelector } from "store/store";
 import { FetchedProduct } from "type";
 import { addProduct } from "store/cartRedux";
 import useFavorite from "feature/useFavorite";
+import { Stack } from "@mui/system";
+import ProductInfo from "./ProductInfo";
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,7 +26,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   gap: 10px;
   vertical-align: top;
-  margin: 0px auto 40px;
+  margin: 15px auto 40px;
   max-width: 1100px;
   ${mobile({ padding: "10px", flexDirection: "column" })}
   ${tablet({ padding: "15px", flexDirection: "column" })}
@@ -43,6 +45,7 @@ export const ImageShowCase = styled.img<Iimage>`
 export const InfoContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
+  order: 3;
   ${mobile({ padding: "10px" })}
 `;
 
@@ -112,21 +115,18 @@ const Product: FC = () => {
       <Navbar />
       <>
         <Wrapper>
-          <ProductImage images={example.img} />
+          <Stack sx={{ display: { xs: "none", sm: "flex", md: "none" } }}>
+            <ProductInfo product={product} />
+          </Stack>
+          <ProductImage images={product.img} />
           <InfoContainer>
-            <Typography
-              variant="h5"
-              sx={{ fontWeight: "medium", marginTop: "10px" }}
-            >
-              {example.title}
-            </Typography>
-            <Typography>{example.gender}'s shoe</Typography>
-            <Typography>$ {example.price}</Typography>
-            <ImageShowCase src={example.img[0]} />
+            <Stack sx={{ display: { xs: "flex", sm: "none", md: "flex" } }}>
+              <ProductInfo product={product} />
+            </Stack>
             <SizeGuide
               handelChange={sizeHandle}
               sizeSelected={selectedSize}
-              sizeExisted={example.existedSize}
+              sizeExisted={product.existedSize}
               notSelected={notSelected}
             />
             <NormalButton onClick={handelAddToCart}>
@@ -140,7 +140,7 @@ const Product: FC = () => {
               />
               <Typography>Favorite</Typography>
             </NormalButton>
-            <Typography sx={{ marginTop: "15px" }}>{example.desc}</Typography>
+            <Typography sx={{ marginTop: "15px" }}>{product.desc}</Typography>
           </InfoContainer>
         </Wrapper>
       </>
