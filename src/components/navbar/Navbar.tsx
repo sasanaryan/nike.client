@@ -7,6 +7,7 @@ import { useAppSelector } from "store/store";
 import { icons } from "data";
 import NavbarMiddle from "components/navbar/NavbarMiddle";
 import NavbarBottom from "components/navbar/NavbarBottom";
+import ProfileMenu from "components/ProfileMenu/ProfileMenu";
 
 const Logo = styled.img`
   margin: 0px 5px 0px 5px;
@@ -81,11 +82,16 @@ const Navbar: FC = () => {
               </Typography>
             </MenuIt>
             {user ? (
-              <MenuIt>
-                <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
-                  Hi, {user.username}
-                </Typography>
-              </MenuIt>
+              <ProfileMenu>
+                <MenuIt>
+                  <>
+                    <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
+                      Hi, {user.username}
+                    </Typography>
+                  </>
+                  <Logo src={icons.person} />
+                </MenuIt>
+              </ProfileMenu>
             ) : (
               <Stack
                 direction="row"
