@@ -6,33 +6,70 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { baseurl } from "config";
 import Product from "components/product";
 
-const Products: FC<FilterProducts> = ({ gender, range, cat, sort }) => {
+const Products: FC<FilterProducts> = ({
+  gender,
+  range,
+  cat,
+  sort,
+  searchWord,
+}) => {
   const [products, setProducts] = useState<FetchedProduct[]>([]);
   const [filter, setFilter] = useState<FetchedProduct[]>([]);
+  const [filterSearch, setFilterSearch] = useState<FetchedProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  console.log("products", searchWord);
 
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const res = await baseurl.get(
-          cat ? `/products?category=${cat}` : "/products"
+    if (searchWord) {
+      const getFilteredProducts = async () => {
+        try {
+          const res = await baseurl.get("/products");
+          const productsFilter = res.data.filter((item: FetchedProduct) => {
+            return item.title.toLowerCase().includes(searchWord.toLowerCase());
+          });
+
+          setFilterSearch(productsFilter);
+          setFilter(productsFilter);
+          setLoading(false);
+          console.log(`${searchWord} ${filter.toString()}`);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getFilteredProducts();
+    } else {
+      const getProducts = async () => {
+        try {
+          const res = await baseurl.get(
+            cat ? `/products?category=${cat}` : "/products"
+          );
+          setProducts(res.data);
+          setFilter(res.data);
+          setLoading(false);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getProducts();
+    }
+  }, [cat, searchWord]);
+
+  useEffect(() => {
+    if (searchWord) {
+      range &&
+        setFilter(
+          filterSearch.filter(
+            (item) => item.price <= range[1] && range[0] <= item.price
+          )
         );
-        setProducts(res.data);
-        setFilter(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getProducts();
-  }, [cat]);
-
-  useEffect(() => {
-    range &&
-      setFilter(
-        products.filter(
-          (item) => item.price <= range[1] && range[0] <= item.price
-        )
-      );
-
+    } else {
+      range &&
+        setFilter(
+          products.filter(
+            (item) => item.price <= range[1] && range[0] <= item.price
+          )
+        );
+    }
     gender !== "No gender" &&
       setFilter((prev) => [...prev].filter((item) => item.gender === gender));
   }, [range, gender]);
@@ -51,7 +88,7 @@ const Products: FC<FilterProducts> = ({ gender, range, cat, sort }) => {
 
   return (
     <Grid container margin={{ xs: "0px", sm: "5px" }}>
-      {cat
+      {cat || searchWord
         ? filter.map((item: FetchedProduct) => (
             <Product item={item} key={item._id} />
           ))
