@@ -39,6 +39,7 @@ const ProductList = () => {
   const location = useLocation();
 
   const cat = location.pathname.split("/")[2];
+  const searchWord = location.state?.searchWord;
   const [gender, setGender] = useState<gendetstste>("No gender");
   const [range, setRange] = useState<number[]>([50, 200]);
   const [sort, setSort] = useState<sortstate>("newest");
@@ -62,7 +63,7 @@ const ProductList = () => {
             fontSize: "25px",
           }}
         >
-          {cat}
+          {searchWord ? `Result for:  ${searchWord} ` : cat}
         </Typography>
 
         <Stack
@@ -116,7 +117,13 @@ const ProductList = () => {
             </Select>
           </SelectContainer>
         </Stack>
-        <Products gender={gender} range={range} cat={cat} sort={sort} />
+        <Products
+          gender={gender}
+          range={range}
+          cat={cat}
+          sort={sort}
+          searchWord={searchWord}
+        />
       </Stack>
       <Footer />
     </>
