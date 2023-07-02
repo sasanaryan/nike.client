@@ -44,22 +44,14 @@ const SearchBar: FC<SearchBarProp> = ({ setOpenSearchBar, openSearchBar }) => {
     setOpenSearchBar(true);
     ref?.current?.focus();
   };
-
   function handleChange(event: eventOnChange) {
     setSearchWord(event.target.value);
 
     setOpenSearchBar(true);
   }
-
   const reset = () => {
     setSearchWord("");
   };
-
-  const HandleCancele = () => {
-    setSearchWord("");
-    setOpenSearchBar(false);
-  };
-
   const handleKeyDown = (event: eventOnClick) => {
     if (event.key === "Enter") {
       console.log("enter clicked");
@@ -72,6 +64,11 @@ const SearchBar: FC<SearchBarProp> = ({ setOpenSearchBar, openSearchBar }) => {
       reset();
       ref?.current?.blur();
     }
+  };
+
+  const HandleCancele = () => {
+    setSearchWord("");
+    setOpenSearchBar(false);
   };
 
   return (
