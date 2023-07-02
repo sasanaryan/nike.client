@@ -45,4 +45,5 @@ export interface FilterProducts {
   range?: number[];
   cat?: string;
   sort?: string;
+  searchWord?: string;
 }
