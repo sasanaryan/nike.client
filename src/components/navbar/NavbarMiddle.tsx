@@ -7,6 +7,7 @@ import { Badge, Typography } from "@mui/material";
 import SearchBar from "components/searchBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import { icons } from "data";
+import { useAppSelector } from "store/store";
 
 const Container = styled.div`
   padding: 0px 30px 0px 30px;
@@ -44,6 +45,7 @@ const StyledLink = styled(Link)`
 const NavbarMiddle: FC = () => {
   const [openSideMenu, setOpenSideMenu] = useState<boolean>(false);
   const [openSearchBar, setOpenSearchBar] = useState<boolean>(false);
+  const quantity = useAppSelector((state) => state.cart.quantity);
 
   return (
     <>
@@ -61,7 +63,7 @@ const NavbarMiddle: FC = () => {
             <StyledLink to="/cart">
               <Badge>
                 <BadgeContent>
-                  <Typography fontSize="13px">4</Typography>
+                  <Typography fontSize="13px">{quantity}</Typography>
                 </BadgeContent>
                 <Logo src={icons.cart} />
               </Badge>
