@@ -6,9 +6,10 @@ import { Stack } from "@mui/system";
 import { Badge, Typography } from "@mui/material";
 import SearchBar from "components/searchBar";
 import MenuIcon from "@mui/icons-material/Menu";
+import { mobile } from "theme";
 import { icons } from "data";
 import { useAppSelector } from "store/store";
-
+import HamburgerMenu from "components/hamburgerMenu";
 const Container = styled.div`
   padding: 0px 30px 0px 30px;
   display: flex;
@@ -17,6 +18,7 @@ const Container = styled.div`
   align-items: center;
   height: 70px;
   background-color: #ffffff;
+  ${mobile({ padding: "0px 7px 0px 10px" })};
 `;
 
 const Logo = styled.img`
@@ -53,7 +55,7 @@ const NavbarMiddle: FC = () => {
         <StyledLink to="/">
           <Logo src={icons.logo} />
         </StyledLink>
-        <Stack direction="row" alignItems="center" spacing={4}>
+        <Stack direction="row" alignItems="center" spacing={1}>
           <SearchBar
             setOpenSearchBar={setOpenSearchBar}
             openSearchBar={openSearchBar}
@@ -75,6 +77,10 @@ const NavbarMiddle: FC = () => {
           </Stack>
         </Stack>
       </Container>
+      <HamburgerMenu
+        activeSide={openSideMenu}
+        setActiveSide={setOpenSideMenu}
+      />
     </>
   );
 };
