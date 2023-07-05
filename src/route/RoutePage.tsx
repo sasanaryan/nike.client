@@ -7,6 +7,7 @@ import Product from "pages/product";
 import { useAppSelector } from "store/store";
 import ProductList from "pages/productList/ProductList";
 import Cart from "pages/cart";
+import Profile from "pages/profile";
 
 const RoutePage: FC = () => {
   const user = useAppSelector((state) => state.user.currentUser);
@@ -19,6 +20,7 @@ const RoutePage: FC = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/register" element={user ? <Home /> : <Register />} />
         <Route path="/login" element={user ? <Home /> : <Login />} />
+        <Route path="/profile/:sectionParam?" element={<Profile />} />
       </Routes>
     </Router>
   );
