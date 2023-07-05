@@ -47,3 +47,14 @@ export interface FilterProducts {
   sort?: string;
   searchWord?: string;
 }
+
+export interface OrderedProduct {
+  _id: string;
+  userId: string;
+  productId: string;
+  productImg: string;
+  productName: string;
+  productSize: string;
+  productPrice: number;
+  createdAt: Date;
+}
