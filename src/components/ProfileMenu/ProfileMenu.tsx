@@ -15,10 +15,10 @@ const StyledLink = styled(Link)`
     color: gray;
   }
 `;
-
-type ProfileMenuProp = {
+type clickEvent = React.MouseEvent<HTMLButtonElement>;
+interface ProfileMenuProp {
   children: ReactNode | JSX.Element | JSX.Element[];
-};
+}
 
 const ProfileMenu: FC<ProfileMenuProp> = ({ children }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -26,7 +26,7 @@ const ProfileMenu: FC<ProfileMenuProp> = ({ children }) => {
 
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: clickEvent) => {
     setAnchorEl(event.currentTarget);
   };
 
