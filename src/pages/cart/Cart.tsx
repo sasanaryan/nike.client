@@ -12,6 +12,7 @@ import Navbar from "components/navbar";
 import Footer from "components/footer/Footer";
 import Button from "components/button";
 import CartItem from "components/cartItem";
+import useStatus from "feature/useStatus";
 
 const Container = styled.div`
   width: 100wv;
@@ -92,6 +93,7 @@ type product = {
 const Cart: FC = () => {
   const cart = useAppSelector((state) => state.cart);
   const currentUser = useAppSelector((state) => state.user.currentUser);
+  const { purchasedStatus } = useStatus();
   const navigate = useNavigate();
 
   const makeOrder = (product: product, currentUserId?: string) => {
@@ -114,6 +116,7 @@ const Cart: FC = () => {
           orders
         );
         setTimeout(() => navigate("/profile/order"), 2000);
+        purchasedStatus();
       } catch (err) {
         console.log(err);
       }
@@ -130,14 +133,15 @@ const Cart: FC = () => {
           <Info>
             <List>
               <TransitionGroup>
-                {cart.products.map((product: product) => (
-                  <Collapse>
-                    <CartItem
-                      key={product.orderedProductId}
-                      product={product}
-                    />
-                  </Collapse>
-                ))}
+                {cart.products &&
+                  cart.products.map((product: product) => (
+                    <Collapse>
+                      <CartItem
+                        key={product.orderedProductId}
+                        product={product}
+                      />
+                    </Collapse>
+                  ))}
               </TransitionGroup>
             </List>
             <Hr />
