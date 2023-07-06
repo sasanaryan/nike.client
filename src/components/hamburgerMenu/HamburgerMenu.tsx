@@ -9,7 +9,7 @@ import CloseTwoToneIcon from "@mui/icons-material/CloseTwoTone";
 import { icons } from "data";
 import CategoryLink from "components/hamburgerMenu/CategoryLink";
 import UserSection from "components/hamburgerMenu/UserSection";
-import { mobile, tablet } from "theme";
+import { mobile } from "theme";
 
 type ModelProp = {
   open?: boolean;
@@ -47,7 +47,8 @@ const Container = styled.div<ContainerProp>`
   padding: 0px 30px 0px 30px;
   position: fixed;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: flex-start;
   background-color: #ffffff;
   top: 0;
   right: 0;
@@ -87,7 +88,7 @@ const HamburgerMenu: FC<HamburgerMenuProp> = ({
         <Stack
           direction="column"
           gap={3}
-          sx={{ padding: "15px", width: "100%" }}
+          sx={{ padding: "10px 0px 10px 0px", width: "100%" }}
         >
           <CloseTwoToneIcon
             sx={{ alignSelf: "flex-end", fontSize: "30px" }}
