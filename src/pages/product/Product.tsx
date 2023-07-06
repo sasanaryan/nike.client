@@ -20,7 +20,7 @@ import useFavorite from "feature/useFavorite";
 import { Stack } from "@mui/system";
 import ProductInfo from "./ProductInfo";
 import useStatus from "feature/useStatus";
-
+import ImageSkeleton from "components/skeleton/imageSkeleton";
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
@@ -66,6 +66,7 @@ const Product: FC = () => {
   const [product, setProduct] = useState<FetchedProduct>(initialProduct);
   const [selectedSize, setSelectedSize] = useState<number>(0);
   const [notSelected, setNotselected] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { isLiked, favoriteHandler } = useFavorite(product._id);
   const { cartStatus, favoriteStatus } = useStatus();
   const dispatch = useAppDispatch();
@@ -81,6 +82,7 @@ const Product: FC = () => {
       try {
         const res = await baseurl.get(`products/find/` + id);
         setProduct(res.data);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -122,7 +124,7 @@ const Product: FC = () => {
           <Stack sx={{ display: { xs: "none", sm: "flex", md: "none" } }}>
             <ProductInfo product={product} />
           </Stack>
-          <ProductImage images={product.img} />
+          {loading ? <ImageSkeleton /> : <ProductImage images={product?.img} />}
           <InfoContainer>
             <Stack sx={{ display: { xs: "flex", sm: "none", md: "flex" } }}>
               <ProductInfo product={product} />
