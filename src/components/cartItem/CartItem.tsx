@@ -17,6 +17,7 @@ import {
 import useFavorite from "feature/useFavorite";
 import { mobile } from "theme";
 import ChangeSelect from "components/cartItem/ChangeSelect";
+import useStatus from "feature/useStatus";
 
 const Image = styled.img`
   width: 170px;
@@ -49,6 +50,7 @@ const CartItem: FC<CardItemProp> = ({ product }) => {
   );
 
   const { isLiked, favoriteHandler } = useFavorite(product._id);
+  const { cartStatus, favoriteStatus } = useStatus();
   const id = product.orderedProductId;
   const dispatch = useAppDispatch();
 
@@ -66,10 +68,12 @@ const CartItem: FC<CardItemProp> = ({ product }) => {
 
   const handleRemove = () => {
     dispatch(removeItemFromCart({ id, selectedSize }));
+    cartStatus(product.title, "remove");
   };
 
   const handleFavorite = () => {
     favoriteHandler();
+    favoriteStatus(product, isLiked);
   };
 
   return (
