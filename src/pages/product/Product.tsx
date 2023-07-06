@@ -19,6 +19,7 @@ import { addProduct } from "store/cartRedux";
 import useFavorite from "feature/useFavorite";
 import { Stack } from "@mui/system";
 import ProductInfo from "./ProductInfo";
+import useStatus from "feature/useStatus";
 
 const Wrapper = styled.div`
   display: flex;
@@ -66,6 +67,7 @@ const Product: FC = () => {
   const [selectedSize, setSelectedSize] = useState<number>(0);
   const [notSelected, setNotselected] = useState(false);
   const { isLiked, favoriteHandler } = useFavorite(product._id);
+  const { cartStatus, favoriteStatus } = useStatus();
   const dispatch = useAppDispatch();
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -89,6 +91,7 @@ const Product: FC = () => {
   const favoritHandler = () => {
     if (user) {
       favoriteHandler();
+      favoriteStatus(product, isLiked);
     } else {
       navigate("/login");
     }
@@ -100,6 +103,7 @@ const Product: FC = () => {
       dispatch(
         addProduct({ ...product, selectedSize, quality, orderedProductId })
       );
+      cartStatus(product.title, "Add");
     } else {
       setNotselected(true);
     }
