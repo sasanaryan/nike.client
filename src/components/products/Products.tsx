@@ -5,6 +5,7 @@ import { FetchedProduct } from "type";
 import Grid from "@mui/material/Unstable_Grid2";
 import { baseurl } from "config";
 import Product from "components/product";
+import ProductsSkeleton from "components/skeleton/productsSkeleton";
 
 const Products: FC<FilterProducts> = ({
   gender,
@@ -87,6 +88,32 @@ const Products: FC<FilterProducts> = ({
   }, [sort]);
 
   return (
+    <>
+      {loading ? (
+        <ProductsSkeleton listsToRender={8} />
+      ) : (
+        <Display
+          products={products}
+          filter={filter}
+          cat={cat}
+          searchWord={searchWord}
+        />
+      )}
+    </>
+  );
+};
+
+export default Products;
+
+interface DisplayProp {
+  products: FetchedProduct[];
+  filter: FetchedProduct[];
+  searchWord?: string;
+  cat?: string;
+}
+
+const Display: FC<DisplayProp> = ({ products, filter, cat, searchWord }) => {
+  return (
     <Grid container margin={{ xs: "0px", sm: "5px" }}>
       {cat || searchWord
         ? filter.map((item: FetchedProduct) => (
@@ -100,5 +127,3 @@ const Products: FC<FilterProducts> = ({
     </Grid>
   );
 };
-
-export default Products;
