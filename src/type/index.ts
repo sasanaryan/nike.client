@@ -15,9 +15,16 @@ export interface UserRedux {
   username: string;
   email?: string;
   favorites?: string[];
-  accessToken?: string;
+  refreshToken?: string;
 }
-
+export interface UserPayloadAction {
+  _id?: string;
+  username: string;
+  email?: string;
+  favorites?: string[];
+  accessToken?: string;
+  refreshToken?: string;
+}
 export interface CatItem {
   id: number;
   message: string;
