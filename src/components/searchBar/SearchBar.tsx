@@ -86,8 +86,8 @@ const SearchBar: FC<SearchBarProp> = ({ setOpenSearchBar, openSearchBar }) => {
           gap={3}
           sx={{ flexGrow: 1 }}
         >
-          <Wrapper display={openSearchBar}>
-            <SearchIcon display={openSearchBar} onClick={handleClick}>
+          <Wrapper openSearchBar={openSearchBar}>
+            <SearchIcon openSearchBar={openSearchBar} onClick={handleClick}>
               <Search />
             </SearchIcon>
 
@@ -97,11 +97,11 @@ const SearchBar: FC<SearchBarProp> = ({ setOpenSearchBar, openSearchBar }) => {
               placeholder="Search"
               onChange={handleChange}
               onKeyDown={handleKeyDown}
-              display={openSearchBar}
+              openSearchBar={openSearchBar}
               ref={ref}
             />
 
-            <Clear display={openSearchBar} onClick={reset}>
+            <Clear openSearchBar={openSearchBar} onClick={reset}>
               <CloseIcon />
             </Clear>
           </Wrapper>
