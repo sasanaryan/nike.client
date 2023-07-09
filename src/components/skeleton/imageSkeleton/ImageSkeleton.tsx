@@ -5,7 +5,7 @@ import { Stack } from "@mui/system";
 const ImageSkeleton: FC = () => {
   return (
     <Stack
-      direction={{ xs: "column", md: "row", lg: "row" }}
+      direction={{ xs: "column-reverse", md: "row", lg: "row" }}
       gap={2}
       flex="2.5"
       height="100%"
