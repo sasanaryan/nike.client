@@ -23,19 +23,18 @@ export const registerUser = async (dispatch: Dispatch, user: UserRedux) => {
   }
 };
 
-export const Delete = async (dispatch: Dispatch, user: UserRedux) => {
+export const LogOut = async (dispatch: Dispatch, refreshToken: string) => {
+  const config = {
+    data: {
+      refreshToken: refreshToken,
+    },
+  };
+
+  dispatch(Start());
   try {
-    const res = await baseurl.delete(`/user/` + user._id, {
-      headers: {
-        Authorization: `Bearer ${user.accessToken}`,
-      },
-    });
+    const res = await baseurl.delete("/refreshtoken", config);
     dispatch(logout());
   } catch (err) {
     dispatch(Failure());
   }
-};
-
-export const LogOut = (dispatch: Dispatch) => {
-  dispatch(logout());
 };
