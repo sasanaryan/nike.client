@@ -121,13 +121,13 @@ const Product: FC = () => {
       <Navbar />
       <>
         <Wrapper>
-          <Stack sx={{ display: { xs: "none", sm: "flex", md: "none" } }}>
-            <ProductInfo product={product} />
+          <Stack sx={{ display: { xs: "flex", sm: "flex", md: "none" } }}>
+            <ProductInfo product={product} loading={loading} />
           </Stack>
           {loading ? <ImageSkeleton /> : <ProductImage images={product?.img} />}
           <InfoContainer>
-            <Stack sx={{ display: { xs: "flex", sm: "none", md: "flex" } }}>
-              <ProductInfo product={product} />
+            <Stack sx={{ display: { xs: "none", sm: "none", md: "flex" } }}>
+              <ProductInfo product={product} loading={loading} />
             </Stack>
             <SizeGuide
               handelChange={sizeHandle}
