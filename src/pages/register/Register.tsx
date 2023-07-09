@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { FC } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { literal, object, string, TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,6 +16,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormInput from "components/formInput";
 import { useAppDispatch } from "store/store";
 import { registerUser } from "services/apiCall";
+import usePrevLocation from "feature/usePrevLocation";
 
 const registerSchema = object({
   username: string()
@@ -54,11 +55,13 @@ let initialUser = {
 const Register: FC = () => {
   const [loading, setLoading] = useState(false);
   const [values, setValues] = useState<registerUser>(initialUser);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const prevLocation = usePrevLocation(location);
   const dispatch = useAppDispatch();
   const methods = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
   });
-  const navigate = useNavigate();
 
   const {
     reset,
@@ -67,13 +70,21 @@ const Register: FC = () => {
     formState: { isSubmitSuccessful, errors },
   } = methods;
 
+  const reDirect = () => {
+    if ((prevLocation.pathname.split("/")[1] = "/register")) {
+      navigate("/");
+    } else {
+      navigate(-1);
+    }
+  };
+
   useEffect(() => {
     if (isSubmitSuccessful) {
       const { passwordConfirm, terms, ...other }: registerUser = values;
 
       registerUser(dispatch, { ...other });
       reset();
-      navigate(-1);
+      reDirect();
     }
   }, [isSubmitSuccessful]);
 
@@ -144,7 +155,9 @@ const Register: FC = () => {
               {errors["terms"] ? errors["terms"].message : ""}
             </FormHelperText>
           </FormGroup>
-
+          <Typography>
+            if you have account go to <Link to="/login">Login</Link> page
+          </Typography>
           <LoadingButton
             variant="contained"
             fullWidth
