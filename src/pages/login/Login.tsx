@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { FC } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LoadingButton } from "@mui/lab";
 import { Box, Typography } from "@mui/material";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppDispatch } from "store/store";
 import { login } from "services/apiCall";
 import FormInput from "components/formInput";
+import usePrevLocation from "feature/usePrevLocation";
 
 const LogInSchema = object({
   username: string()
@@ -37,11 +38,13 @@ const Login: FC = () => {
   const [loading, setLoading] = useState(false);
   const [values, setValues] = useState<loginUser>(initialUser);
   const dispatch = useAppDispatch();
+  const location = useLocation();
+  const prevLocation = usePrevLocation(location);
+  const navigate = useNavigate();
 
   const methods = useForm<LogInInput>({
     resolver: zodResolver(LogInSchema),
   });
-  const navigate = useNavigate();
 
   const {
     reset,
@@ -49,11 +52,18 @@ const Login: FC = () => {
     formState: { isSubmitSuccessful, errors },
   } = methods;
 
+  const reDirect = () => {
+    if ((prevLocation.pathname.split("/")[1] = "/register")) {
+      navigate("/");
+    } else {
+      navigate(-1);
+    }
+  };
   useEffect(() => {
     if (isSubmitSuccessful) {
       login(dispatch, values);
       reset();
-      navigate(-1);
+      reDirect();
     }
   }, [isSubmitSuccessful]);
 
@@ -94,7 +104,10 @@ const Login: FC = () => {
             type="password"
             sx={{ mb: 2 }}
           />
-
+          <Typography>
+            if you have not account go to <Link to="/register">Register</Link>{" "}
+            page
+          </Typography>
           <LoadingButton
             variant="contained"
             fullWidth
@@ -102,7 +115,7 @@ const Login: FC = () => {
             loading={loading}
             sx={{ py: "0.8rem", mt: "1rem" }}
           >
-            SignIn
+            Login
           </LoadingButton>
         </Box>
       </FormProvider>
