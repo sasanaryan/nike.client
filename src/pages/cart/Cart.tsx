@@ -134,11 +134,8 @@ const Cart: FC = () => {
               <TransitionGroup>
                 {cart.products &&
                   cart.products.map((product: product) => (
-                    <Collapse>
-                      <CartItem
-                        key={product.orderedProductId}
-                        product={product}
-                      />
+                    <Collapse key={product.orderedProductId}>
+                      <CartItem product={product} />
                     </Collapse>
                   ))}
               </TransitionGroup>
