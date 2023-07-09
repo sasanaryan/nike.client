@@ -97,6 +97,7 @@ const ProductImage: FC<ProductImageProp> = ({ images }) => {
       >
         {images.map((i) => (
           <ImageShowCase
+            key={i}
             src={i}
             isSelected={i === mainImage ? true : false}
             onMouseEnter={() => setMainImage(i)}
