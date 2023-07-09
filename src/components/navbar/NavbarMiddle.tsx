@@ -10,6 +10,7 @@ import { mobile } from "theme";
 import { icons } from "data";
 import { useAppSelector } from "store/store";
 import HamburgerMenu from "components/hamburgerMenu";
+import ScrollTop from "components/goToTop";
 const Container = styled.div`
   padding: 0px 30px 0px 30px;
   display: flex;
@@ -81,6 +82,7 @@ const NavbarMiddle: FC = () => {
         activeSide={openSideMenu}
         setActiveSide={setOpenSideMenu}
       />
+      <ScrollTop />
     </>
   );
 };
