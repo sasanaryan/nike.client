@@ -77,15 +77,9 @@ const ProductList = () => {
               name="gender"
               onChange={(e: selectevent) => setGender(e.target.value)}
             >
-              <option value="No gender">
-                <Typography>No gender</Typography>
-              </option>
-              <option value="Women">
-                <Typography>Women</Typography>
-              </option>
-              <option value="Men">
-                <Typography>Men</Typography>
-              </option>
+              <option value="No gender">No gender</option>
+              <option value="Women">Women</option>
+              <option value="Men">Men</option>
             </Select>
           </SelectContainer>
           <Price>
@@ -105,15 +99,9 @@ const ProductList = () => {
           <SelectContainer>
             <Typography fontWeight="bold">Sort Products:</Typography>
             <Select onChange={(e: selectevent) => setSort(e.target.value)}>
-              <option value="newest">
-                <Typography>Newest</Typography>
-              </option>
-              <option value="asc">
-                <Typography>Price (asc)</Typography>
-              </option>
-              <option value="desc">
-                <Typography>Price (desc)</Typography>
-              </option>
+              <option value="newest">Newest</option>
+              <option value="asc">Price (asc)</option>
+              <option value="desc">Price (desc)</option>
             </Select>
           </SelectContainer>
         </Stack>
