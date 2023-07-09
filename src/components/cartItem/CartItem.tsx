@@ -1,14 +1,14 @@
 import { useState } from "react";
 import type { FC } from "react";
 import { CartProduct } from "type";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { Stack } from "@mui/system";
 import { Checkbox, Typography } from "@mui/material";
 import { IconButton } from "@mui/material";
-import { useAppDispatch } from "store/store";
+import { useAppDispatch, useAppSelector } from "store/store";
 import {
   changeProductQuality,
   changeProductSize,
@@ -53,6 +53,8 @@ const CartItem: FC<CardItemProp> = ({ product }) => {
   const { cartStatus, favoriteStatus } = useStatus();
   const id = product.orderedProductId;
   const dispatch = useAppDispatch();
+  const currentUser = useAppSelector((state) => state.user.currentUser);
+  const navigate = useNavigate();
 
   const handleSizeChange = (event: EventSelect) => {
     const size = event.target.value;
@@ -72,8 +74,12 @@ const CartItem: FC<CardItemProp> = ({ product }) => {
   };
 
   const handleFavorite = () => {
-    favoriteHandler();
-    favoriteStatus(product, isLiked);
+    if (currentUser) {
+      favoriteHandler();
+      favoriteStatus(product, isLiked);
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
