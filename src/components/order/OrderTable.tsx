@@ -13,6 +13,7 @@ import { OrderedProduct } from "type";
 import type { FC } from "react";
 import { Stack } from "@mui/system";
 import Moment from "react-moment";
+import useTokenRequst from "feature/useTokenRequst";
 const Container = styled.div`
   display: inline-flex;
   justify-content: center;
@@ -30,13 +31,12 @@ const ImageShowCase = styled.img`
 const OrderTable: FC = () => {
   const currentUser = useAppSelector((state) => state.user.currentUser);
   const [orders, setOrders] = useState<OrderedProduct[]>();
+  const api = useTokenRequst();
 
   useEffect(() => {
     try {
       const fetchOrders = async () => {
-        const res = await outhAxios(currentUser?.accessToken).get(
-          "cart/" + currentUser?._id
-        );
+        const res = await api.get("cart/" + currentUser?._id);
         setOrders(res.data);
       };
       fetchOrders();
