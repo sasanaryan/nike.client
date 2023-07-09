@@ -48,7 +48,7 @@ export const Container = styled.div<ContainerProp>`
 `;
 
 type WrapperProp = {
-  display?: boolean;
+  openSearchBar?: boolean;
 };
 export const Wrapper = styled.div<WrapperProp>`
     position: relative;
@@ -60,17 +60,17 @@ export const Wrapper = styled.div<WrapperProp>`
     border-radius: 26px;
     padding:10px;
   
-    width: ${({ display }) => (display ? "90%" : "200px")};
-     ${({ display }) =>
+    width: ${({ openSearchBar }) => (openSearchBar ? "90%" : "200px")};
+     ${({ openSearchBar }) =>
        tablet(
-         `width: ${display ? "90%" : "52px"};  padding: ${
-           display ? "17px" : "16px"
+         `width: ${openSearchBar ? "90%" : "52px"};  padding: ${
+           openSearchBar ? "17px" : "16px"
          };  hight: 52px; `
        )};
-     ${({ display }) =>
+     ${({ openSearchBar }) =>
        mobile(
-         `width: ${display ? "90%" : "52px"};  padding: ${
-           display ? "17px" : "16px"
+         `width: ${openSearchBar ? "90%" : "52px"};  padding: ${
+           openSearchBar ? "17px" : "16px"
          };    hight:"52"; `
        )};
     transition: width 0.5s ease-out ;
@@ -79,7 +79,7 @@ export const Wrapper = styled.div<WrapperProp>`
   `;
 
 type ClearProp = {
-  display?: boolean;
+  openSearchBar?: boolean;
 };
 export const Clear = styled.div<ClearProp>`
   position: absolute;
@@ -88,7 +88,7 @@ export const Clear = styled.div<ClearProp>`
   justify-content: center;
   right: 10px;
   top: 0px;
-  display: ${({ display }) => (display ? "flex" : "none")};
+  display: ${({ openSearchBar }) => (openSearchBar ? "flex" : "none")};
   margin-right: 5px;
   cursor: pointer;
   width: 52px;
@@ -96,7 +96,7 @@ export const Clear = styled.div<ClearProp>`
 `;
 
 type SearchIconProp = {
-  display?: boolean;
+  openSearchBar?: boolean;
 };
 export const SearchIcon = styled.div<SearchIconProp>`
   position: absolute;
@@ -111,27 +111,27 @@ export const SearchIcon = styled.div<SearchIconProp>`
   width: 52px;
   height: 52px;
   background-color: #f7f7f7;
-  ${({ display }) =>
-    tablet(`background-color: ${display ? "#f7f7f7" : "#ffffff"};   `)};
-  ${({ display }) =>
-    mobile(`background-color: ${display ? "#f7f7f7" : "#ffffff"};   `)};
+  ${({ openSearchBar }) =>
+    tablet(`background-color: ${openSearchBar ? "#f7f7f7" : "#ffffff"};   `)};
+  ${({ openSearchBar }) =>
+    mobile(`background-color: ${openSearchBar ? "#f7f7f7" : "#ffffff"};   `)};
   &:hover:focus {
     background-color: #cccccc;
   }
 `;
 
 type InputProp = {
-  display?: boolean;
+  openSearchBar?: boolean;
 };
 export const Input = styled.input<InputProp>`
   background-color: #f7f7f7;
   width: 100%;
   padding: 8px 15px 8px 43px;
   display: table-cell;
-  ${({ display }) =>
-    mobile(`padding: ${display ? "0px 15px 0px 35px" : "0px"};`)};
-  ${({ display }) =>
-    tablet(`padding: ${display ? "0px 15px 0px 35px" : "0px"};`)};
+  ${({ openSearchBar }) =>
+    mobile(`padding: ${openSearchBar ? "0px 15px 0px 35px" : "0px"};`)};
+  ${({ openSearchBar }) =>
+    tablet(`padding: ${openSearchBar ? "0px 15px 0px 35px" : "0px"};`)};
   &:focus {
     outline: none;
   }
