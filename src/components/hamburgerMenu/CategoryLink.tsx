@@ -23,6 +23,7 @@ const CategoryLink: FC<CategoryLinkProp> = ({ setActiveSide }) => {
     <>
       {categories.map((item) => (
         <Stack
+          key={item.cat}
           direction="row"
           alignItems="center"
           justifyContent="space-between"
