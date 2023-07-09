@@ -65,3 +65,13 @@ export interface OrderedProduct {
   productPrice: number;
   createdAt: Date;
 }
+
+export interface userRegister {
+  username: string;
+  email: string;
+  password: string;
+}
+export interface userLogin {
+  username: string;
+  password: string;
+}
