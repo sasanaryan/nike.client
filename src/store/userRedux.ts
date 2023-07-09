@@ -5,12 +5,12 @@ interface IinitialState {
   currentUser: UserRedux | null;
   isFatching: boolean;
   error: boolean;
-  accessToken?: string;
+  accessToken?: string | null;
   errormessage: string | null;
 }
 const initialState: IinitialState = {
   currentUser: null,
-
+  accessToken: null,
   isFatching: false,
   error: false,
   errormessage: null,
@@ -43,6 +43,7 @@ const userSlice = createSlice({
       state.errormessage = action.payload;
     },
     logout: (state) => {
+      state.accessToken = null;
       state.currentUser = null;
       state.isFatching = false;
       state.error = false;
