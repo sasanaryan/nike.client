@@ -18,7 +18,7 @@ const Container = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   margin-button: 50px;
 `;
 const ImageShowCase = styled.img`
@@ -40,7 +40,6 @@ const OrderTable: FC = () => {
         setOrders(res.data);
       };
       fetchOrders();
-      console.log(orders);
     } catch (err) {
       console.log(err);
     }
@@ -66,7 +65,10 @@ const OrderTable: FC = () => {
             <TableBody>
               {orders?.map((item) => (
                 <TableRow key={item._id}>
-                  <ImageShowCase src={item.productImg} />
+                  <TableCell align="left">
+                    <ImageShowCase src={item.productImg} />
+                  </TableCell>
+
                   <TableCell align="left">{item.productName}</TableCell>
                   <TableCell align="left">{item.productSize}</TableCell>
                   <TableCell align="left">{item.productPrice}</TableCell>
