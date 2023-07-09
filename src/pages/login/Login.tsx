@@ -6,7 +6,7 @@ import { Box, Typography } from "@mui/material";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { object, string, TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAppDispatch } from "store/store";
+import { useAppDispatch, useAppSelector } from "store/store";
 import { login } from "services/apiCall";
 import FormInput from "components/formInput";
 import usePrevLocation from "feature/usePrevLocation";
@@ -36,11 +36,13 @@ let initialUser = {
 
 const Login: FC = () => {
   const [loading, setLoading] = useState(false);
+  const [userWrong, setUserWrong] = useState(false);
   const [values, setValues] = useState<loginUser>(initialUser);
   const dispatch = useAppDispatch();
   const location = useLocation();
   const prevLocation = usePrevLocation(location);
   const navigate = useNavigate();
+  let errormessage = useAppSelector((state) => state.user.errormessage);
 
   const methods = useForm<LogInInput>({
     resolver: zodResolver(LogInSchema),
@@ -59,15 +61,27 @@ const Login: FC = () => {
       navigate(-1);
     }
   };
+
   useEffect(() => {
     if (isSubmitSuccessful) {
       login(dispatch, values);
+      setLoading(true);
+    }
+  }, [isSubmitSuccessful, userWrong]);
+
+  useEffect(() => {
+    if (errormessage !== null && loading) {
+      setUserWrong(true);
+      setLoading(false);
+    } else if (loading) {
+      setLoading(false);
       reset();
       reDirect();
     }
-  }, [isSubmitSuccessful]);
+  }, [errormessage]);
 
   const onSubmitHandler: SubmitHandler<LogInInput> = (value) => {
+    setUserWrong(false);
     setValues(value);
   };
 
@@ -88,6 +102,13 @@ const Login: FC = () => {
           autoComplete="off"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
+          {userWrong ? (
+            <Typography
+              sx={{ color: "red", fontSize: "15px", marginBottom: "10px" }}
+            >
+              {errormessage}
+            </Typography>
+          ) : null}
           <FormInput
             name="username"
             required
