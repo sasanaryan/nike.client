@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import { Skeleton } from "@mui/material";
 import { Stack } from "@mui/system";
+import uuid from "react-uuid";
 
 const ImageSkeleton: FC = () => {
   return (
@@ -19,6 +20,7 @@ const ImageSkeleton: FC = () => {
           .fill(1)
           .map(() => (
             <Skeleton
+              key={uuid()}
               variant="rectangular"
               sx={{
                 width: "60px",
