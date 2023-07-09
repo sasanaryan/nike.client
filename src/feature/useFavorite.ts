@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import { outhAxios } from "config";
 import { useAppDispatch, useAppSelector } from "store/store";
 import { SetFavorite } from "store/userRedux";
-import { UserRedux } from "type";
-
-type severityAt = "error" | "warning" | "info" | "success";
+import useTokenRequst from "feature/useTokenRequst";
 
 const useFavorite = (productId: string) => {
   const [isLiked, setIsLiked] = useState(false);
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user.currentUser);
+  const api = useTokenRequst();
   useEffect(() => {
     user?.favorites !== undefined &&
       setIsLiked(user.favorites.includes(productId));
@@ -17,7 +15,7 @@ const useFavorite = (productId: string) => {
 
   const favoriteHandler = () => {
     try {
-      outhAxios(user?.accessToken).put("/user/" + user?._id + "/favorite", {
+      api.put("/user/" + user?._id + "/favorite", {
         productId: productId,
       });
       dispatch(SetFavorite(productId));
