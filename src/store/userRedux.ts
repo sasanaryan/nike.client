@@ -1,15 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserRedux } from "type";
+import { UserPayloadAction, UserRedux } from "type";
 
 interface IinitialState {
   currentUser: UserRedux | null;
   isFatching: boolean;
   error: boolean;
+  accessToken?: string;
+  errormessage: string | null;
 }
 const initialState: IinitialState = {
   currentUser: null,
+
   isFatching: false,
   error: false,
+  errormessage: null,
 };
 
 const userSlice = createSlice({
@@ -19,19 +23,36 @@ const userSlice = createSlice({
     Start: (state) => {
       state.isFatching = true;
       state.error = false;
+      state.errormessage = null;
     },
-    loginSuccess: (state, action: PayloadAction<UserRedux>) => {
+    loginSuccess: (state, action: PayloadAction<UserPayloadAction>) => {
+      const { accessToken, ...userDetail } = action.payload;
       state.isFatching = false;
-      state.currentUser = action.payload;
+      state.currentUser = userDetail;
+      state.accessToken = accessToken;
+      state.errormessage = null;
     },
     Failure: (state) => {
       state.isFatching = false;
       state.error = true;
+      state.errormessage = null;
+    },
+    FailureLogin: (state, action: PayloadAction<string>) => {
+      state.isFatching = false;
+      state.error = true;
+      state.errormessage = action.payload;
     },
     logout: (state) => {
       state.currentUser = null;
       state.isFatching = false;
       state.error = false;
+      state.errormessage = null;
+    },
+    RefreshToken: (state, action) => {
+      state.accessToken = action.payload;
+      state.isFatching = false;
+      state.error = false;
+      state.errormessage = null;
     },
     SetFavorite: (state, action: PayloadAction<string>) => {
       if (state.currentUser !== null) {
@@ -45,6 +66,13 @@ const userSlice = createSlice({
   },
 });
 
-export const { Start, loginSuccess, Failure, logout, SetFavorite } =
-  userSlice.actions;
+export const {
+  Start,
+  loginSuccess,
+  Failure,
+  logout,
+  SetFavorite,
+  FailureLogin,
+  RefreshToken,
+} = userSlice.actions;
 export default userSlice.reducer;
