@@ -13,6 +13,7 @@ import Footer from "components/footer/Footer";
 import Button from "components/button";
 import CartItem from "components/cartItem";
 import useStatus from "feature/useStatus";
+import useTokenRequst from "feature/useTokenRequst";
 
 const Container = styled.div`
   width: 100wv;
@@ -92,10 +93,11 @@ type product = {
 
 const Cart: FC = () => {
   const cart = useAppSelector((state) => state.cart);
-  const currentUser = useAppSelector((state) => state.user.currentUser);
+  const user = useAppSelector((state) => state.user);
+  const currentUser = user.currentUser;
   const { purchasedStatus } = useStatus();
   const navigate = useNavigate();
-
+  const api = useTokenRequst();
   const makeOrder = (product: product, currentUserId?: string) => {
     return {
       userId: currentUserId,
@@ -111,17 +113,14 @@ const Cart: FC = () => {
   const checkout = async () => {
     if (currentUser) {
       try {
-        const res = await outhAxios(currentUser?.accessToken).post(
-          `cart`,
-          orders
-        );
+        const res = await api.post(`cart`, orders);
         setTimeout(() => navigate("/profile/order"), 2000);
         purchasedStatus();
       } catch (err) {
         console.log(err);
       }
     } else {
-      navigate("/signin");
+      navigate("/login");
     }
   };
 
