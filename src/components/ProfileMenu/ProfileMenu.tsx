@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import styled from "@emotion/styled";
-import { useAppDispatch } from "store/store";
+import { useAppDispatch, useAppSelector } from "store/store";
 import { LogOut } from "services/apiCall";
 
 const StyledLink = styled(Link)`
@@ -23,6 +23,7 @@ interface ProfileMenuProp {
 const ProfileMenu: FC<ProfileMenuProp> = ({ children }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const dispatch = useAppDispatch();
+  const currentUser = useAppSelector((state) => state.user.currentUser);
 
   const open = Boolean(anchorEl);
 
@@ -31,7 +32,7 @@ const ProfileMenu: FC<ProfileMenuProp> = ({ children }) => {
   };
 
   const handleLogOut = () => {
-    LogOut(dispatch);
+    LogOut(dispatch, currentUser?.refreshToken!);
     handleClose();
   };
 
