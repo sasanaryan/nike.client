@@ -1,6 +1,7 @@
 import { Grid, Skeleton } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import { FC } from "react";
+import uuid from "react-uuid";
 
 interface ListSkeletonProp {
   listsToRender: number;
@@ -13,6 +14,7 @@ const ProductsSkeleton: FC<ListSkeletonProp> = ({ listsToRender }) => {
         .fill(1)
         .map(() => (
           <Stack
+            key={uuid()}
             direction="column"
             sx={{
               flexGrow: "0.5",
