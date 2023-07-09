@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Stack, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useAppDispatch, useAppSelector } from "store/store";
 import { LogOut } from "services/apiCall";
-import { icons } from "data";
 import CustomButton from "components/button";
 
 const StyledLink = styled(Link)`
@@ -29,22 +29,23 @@ interface UserSectionProp {
 }
 
 const UserSection: FC<UserSectionProp> = ({ setActiveSide }) => {
-  const user = useAppSelector((state) => state.user.currentUser);
+  const user = useAppSelector((state) => state.user);
+  const currentUser = user.currentUser;
   const dispatch = useAppDispatch();
 
   const handleLogOut = () => {
-    LogOut(dispatch);
+    LogOut(dispatch, user.accessToken!);
     setActiveSide(false);
   };
 
   return (
     <>
-      {user ? (
+      {currentUser ? (
         <>
           <Typography
             sx={{ fontSize: "20px", fontWeight: "bold", marginTop: "30px" }}
           >
-            Hi, {user?.username}
+            Hi, {currentUser?.username}
           </Typography>
           <Stack
             direction="row"
@@ -58,7 +59,7 @@ const UserSection: FC<UserSectionProp> = ({ setActiveSide }) => {
             </Typography>
           </Stack>
           <Stack direction="row" gap={2} marginTop="15px">
-            <Logo src={icons.person} />
+            <PersonOutlineOutlinedIcon />
             <StyledLink to="/profile">
               <Typography fontSize="17px" fontWeight="500">
                 Profile
@@ -77,7 +78,7 @@ const UserSection: FC<UserSectionProp> = ({ setActiveSide }) => {
             gap={1}
             sx={{ maxHeight: "30px", width: "250px" }}
           >
-            <StyledLink to="/registe">
+            <StyledLink to="/register">
               <CustomButton>
                 <Typography fontSize="17px" fontWeight="500">
                   Join Us
