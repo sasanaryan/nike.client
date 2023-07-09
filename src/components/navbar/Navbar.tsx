@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Divider, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useAppSelector } from "store/store";
 import { icons } from "data";
 import NavbarMiddle from "components/navbar/NavbarMiddle";
@@ -21,6 +22,7 @@ const MenuIt = styled.span`
   color: black;
   text-decoration: none;
   display: flex;
+  align-items: center;
   position: relative;
   cursor: pointer;
   margin-left: 25px;
@@ -39,7 +41,7 @@ const StyledLink = styled(Link)`
 `;
 
 const Navbar: FC = () => {
-  const user = useAppSelector((state) => state.user.currentUser);
+  const currentUser = useAppSelector((state) => state.user.currentUser);
 
   return (
     <>
@@ -81,15 +83,18 @@ const Navbar: FC = () => {
                 Help
               </Typography>
             </MenuIt>
-            {user ? (
+            {currentUser ? (
               <ProfileMenu>
                 <MenuIt>
                   <>
                     <Typography sx={{ fontSize: "12px", fontWeight: "Medium" }}>
-                      Hi, {user.username}
+                      Hi, {currentUser.username}
                     </Typography>
                   </>
-                  <Logo src={icons.person} />
+
+                  <PersonOutlineOutlinedIcon
+                    sx={{ fontSize: "medium", marginLeft: "5px" }}
+                  />
                 </MenuIt>
               </ProfileMenu>
             ) : (
