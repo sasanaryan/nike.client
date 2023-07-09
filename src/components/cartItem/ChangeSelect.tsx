@@ -21,7 +21,9 @@ const ChangeSelect: FC<ChangeSelectProp> = ({
       onChange={handleChange}
     >
       {existedValue.map((value) => (
-        <option value={value}>{value}</option>
+        <option key={value} value={value}>
+          {value}
+        </option>
       ))}
     </select>
   );
