@@ -1,19 +1,31 @@
-import { Start, loginSuccess, Failure, logout } from "store/userRedux";
-import { baseurl } from "config";
 import { Dispatch } from "redux";
+import axios from "axios";
+import {
+  Start,
+  loginSuccess,
+  Failure,
+  logout,
+  FailureLogin,
+} from "store/userRedux";
+import { baseurl } from "config";
 import { AppDispatch } from "store/store";
-import { UserRedux } from "type";
+import { userLogin, userRegister } from "type";
 
-export const login = async (dispatch: AppDispatch, user: UserRedux) => {
+export const login = async (dispatch: AppDispatch, user: userLogin) => {
   dispatch(Start());
   try {
     const res = await baseurl.post("/auth/login", user);
     dispatch(loginSuccess(res.data));
   } catch (err) {
-    dispatch(Failure());
+    if (axios.isAxiosError(err)) {
+      dispatch(FailureLogin(err?.response?.data.title));
+    } else {
+      dispatch(Failure());
+    }
   }
 };
-export const registerUser = async (dispatch: Dispatch, user: UserRedux) => {
+
+export const registerUser = async (dispatch: Dispatch, user: userRegister) => {
   dispatch(Start());
   try {
     const res = await baseurl.post("/auth/register", user);
