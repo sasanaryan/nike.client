@@ -4,6 +4,7 @@ import { Stack } from "@mui/system";
 import styled from "@emotion/styled";
 import { mobile, tablet } from "theme";
 import { footerMenu } from "data";
+import uuid from "react-uuid";
 
 const Container = styled.div`
   display: flex;
@@ -66,19 +67,19 @@ const Footer: FC = () => {
         >
           <Stack direction="column" gap={2} sx={{ margin: "30px " }}>
             {footerMenu.mainMenu.map((item) => (
-              <Items>{item}</Items>
+              <Items key={uuid()}>{item}</Items>
             ))}
           </Stack>
           <Stack direction="column" gap={2} sx={{ margin: "30px " }}>
             <Items>GET HELP</Items>
             {footerMenu.getHelp.map((item) => (
-              <SubItems>{item}</SubItems>
+              <SubItems key={uuid()}>{item}</SubItems>
             ))}
           </Stack>
           <Stack direction="column" gap={2} sx={{ margin: "30px " }}>
             <Items>ABOUT NIKE</Items>
             {footerMenu.adoutNike.map((item) => (
-              <SubItems>{item}</SubItems>
+              <SubItems key={uuid()}>{item}</SubItems>
             ))}
           </Stack>
         </Stack>
@@ -104,7 +105,7 @@ const Footer: FC = () => {
       >
         <Stack direction={{ xs: "column", sm: "row" }} gap={3}>
           {footerMenu.subMenu.map((item) => (
-            <SubItems>{item}</SubItems>
+            <SubItems key={uuid()}>{item}</SubItems>
           ))}
         </Stack>
       </Stack>
