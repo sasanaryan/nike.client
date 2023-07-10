@@ -9,7 +9,7 @@ interface MyToken {
   name: string;
   exp: number;
 }
-const localURL = "http://localhost:8800/api/";
+const Url = process.env.REACT_APP_API_URL;
 
 const useTokenRequst = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const useTokenRequst = () => {
   const user = useAppSelector((state) => state.user);
 
   const axiosInstance = axios.create({
-    baseURL: localURL,
+    baseURL: Url,
     headers: { Authorization: `Bearer ${user?.accessToken}` },
   });
 
@@ -28,7 +28,7 @@ const useTokenRequst = () => {
 
     if (!isExpired) return req;
     try {
-      const response = await axios.post(`${localURL}refreshtoken`, {
+      const response = await axios.post(`${Url}refreshtoken`, {
         refreshToken: user?.currentUser?.refreshToken,
       });
       const newAccessToken = response.data.accessToken;
