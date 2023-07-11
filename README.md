@@ -42,8 +42,7 @@
 
 ![Nike Shop Screen Shot](https://github.com/sasanaryan/nike.client/blob/main/public/assets/image/homepage.jpg?raw=true)
 
-Nike shop is an fully resposive e-commerce web app built with `React.js` and hosted on `Netlify`. This website imitates a real-world market. guest users just can view products, serach products, and add products to cart. signed-in users also can confirm order, select products for favoraite collection and see ordered with favorites products in profile page.
-The Backend api created by `node js`, `express` and `mongoDB`.
+Nike shop is an fully resposive e-commerce web app built with `React.js` and hosted on `Netlify`. The Backend api created by `node js`, `express` and `mongoDB`. This website imitates a real-world market. guest users just can view products, serach products, and add products to cart. signed-in users also can confirm order, select products for favoraite collection and see ordered with favorites products in profile page.
 
 <p align="right"><a href="#readme-top">Back to Top :arrow_heading_up:</a></p>
 
@@ -116,7 +115,7 @@ Getting started with Nike Shop is fairly easy and simple. Follow the instruction
 ├── README.md
 ├── package-lock.json
 ├── package.json
-├── tsconfig.json
+└──  tsconfig.json
 
 
 ```
