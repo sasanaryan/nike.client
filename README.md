@@ -11,7 +11,7 @@
   Nike Shop is an e-commerce web app built with React.js and hosted on Netlify. This website imitates a real-world market where visitors can view products under different categories, select product for favoraite collection, serach products, add products to cart, confirm order, and see ordered products in profile page. 
   <br />
   
-  ### <a href="https://sasan-nikeshop.netlify.app//">View Live</a> :large_blue_diamond: <a href="https://github.com/sasanaryan/nike.client/issues">Report Bug</a>
+  ### <a href="https:/sasan-nikeshop.netlify.app//">View Live</a> :large_blue_diamond: <a href="https:/github.com/sasanaryan/nike.client/issues">Report Bug</a>
   <br />
 </div>
 
@@ -40,7 +40,7 @@
 
 ## 1. About
 
-![Nike Shop Screen Shot](https://drive.google.com/file/d/1y5mkER1syMMADl36ThMUtt1JZCI-B2vn/view?usp=drive_link)
+![Nike Shop Screen Shot](https://github.com/sasanaryan/nike.client/blob/main/public/assets/image/homepage.jpg?raw=true)
 
 Nike shop is an fully resposive e-commerce web app built with `React.js` and hosted on `Netlify`. This website imitates a real-world market. guest users just can view products, serach products, and add products to cart. signed-in users also can confirm order, select products for favoraite collection and see ordered with favorites products in profile page.
 The Backend api created by `node js`, `express` and `mongoDB`.
@@ -58,7 +58,6 @@ The Backend api created by `node js`, `express` and `mongoDB`.
 ![Styled Components](https://img.shields.io/badge/styled--components-%5E5.3.5-%23DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 ![Axios](https://img.shields.io/static/v1?style=for-the-badge&message=Axios&color=5A29E4&logo=Axios&logoColor=FFFFFF&label=)
 ![React Hook Form](https://img.shields.io/static/v1?style=for-the-badge&message=React+Hook+Form&color=EC5990&logo=React+Hook+Form&logoColor=FFFFFF&label=)
-![Material Design](https://img.shields.io/static/v1?style=for-the-badge&message=Material+Design&color=757575&logo=Material+Design&logoColor=FFFFFF&label=)
 
 <p align="right"><a href="#readme-top">Back to Top :arrow_heading_up:</a></p>
 
@@ -71,8 +70,6 @@ Getting started with Nike Shop is fairly easy and simple. Follow the instruction
 - You need to have `Node.js` installed on your computer beforehand to run this project. Follow [this link](https://nodejs.org/en/download/) to install `Node.js` on your computer.
 
 ### 3.2 Installation
-
-To test `Stripe` payment and simulate the credit-card transaction, skip step 3.
 
 1. Clone the repo
 
