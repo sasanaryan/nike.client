@@ -40,7 +40,7 @@
 
 ## 1. About
 
-![Nike Shop Screen Shot](public/assets/image/homepage.jpg)
+![Nike Shop Screen Shot](https://drive.google.com/file/d/1y5mkER1syMMADl36ThMUtt1JZCI-B2vn/view?usp=drive_link)
 
 Nike shop is an fully resposive e-commerce web app built with `React.js` and hosted on `Netlify`. This website imitates a real-world market. guest users just can view products, serach products, and add products to cart. signed-in users also can confirm order, select products for favoraite collection and see ordered with favorites products in profile page.
 The Backend api created by `node js`, `express` and `mongoDB`.
