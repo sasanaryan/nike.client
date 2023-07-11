@@ -43,6 +43,7 @@
 ![Nike Shop Screen Shot](public/assets/image/homepage.jpg)
 
 Nike shop is an fully resposive e-commerce web app built with `React.js` and hosted on `Netlify`. This website imitates a real-world market. guest users just can view products, serach products, and add products to cart. signed-in users also can confirm order, select products for favoraite collection and see ordered with favorites products in profile page.
+The Backend api created by `node js`, `express` and `mongoDB`.
 
 <p align="right"><a href="#readme-top">Back to Top :arrow_heading_up:</a></p>
 
@@ -50,16 +51,20 @@ Nike shop is an fully resposive e-commerce web app built with `React.js` and hos
 
 [![Package - react](https://img.shields.io/github/package-json/dependency-version/tajmin/e-bazar/react?style=for-the-badge&logo=react&logoColor=%2361dafb&color=%23000)](https://www.npmjs.com/package/react)
 [![Package - react-router-dom](https://img.shields.io/github/package-json/dependency-version/tajmin/e-bazar/react-router-dom?style=for-the-badge&logo=react-router&logoColor=%23fff&color=%23F44250)](https://www.npmjs.com/package/react-router-dom)
-![Styled Components](https://img.shields.io/badge/styled--components-%5E5.3.5-%23DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 ![Redux](https://img.shields.io/badge/redux-%5E4.2.0-%23593d88?style=for-the-badge&logo=redux&logoColor=white)
 ![React-Redux](https://img.shields.io/badge/react--redux-%5E8.0.2-%23764abc?style=for-the-badge&logo=redux&logoColor=white)
 ![Redux-Persist](https://img.shields.io/badge/redux--persist-%5E6.0.0-%23764abc?style=for-the-badge&logo=redux&logoColor=white)
+![TypeScript](https://img.shields.io/static/v1?style=for-the-badge&message=TypeScript&color=3178C6&logo=TypeScript&logoColor=FFFFFF&label=)
+![Styled Components](https://img.shields.io/badge/styled--components-%5E5.3.5-%23DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+![Axios](https://img.shields.io/static/v1?style=for-the-badge&message=Axios&color=5A29E4&logo=Axios&logoColor=FFFFFF&label=)
+![React Hook Form](https://img.shields.io/static/v1?style=for-the-badge&message=React+Hook+Form&color=EC5990&logo=React+Hook+Form&logoColor=FFFFFF&label=)
+![Material Design](https://img.shields.io/static/v1?style=for-the-badge&message=Material+Design&color=757575&logo=Material+Design&logoColor=FFFFFF&label=)
 
 <p align="right"><a href="#readme-top">Back to Top :arrow_heading_up:</a></p>
 
 ## 3. Getting Started
 
-Getting started with Fashionista is fairly easy and simple. Follow the instructions as stated below -
+Getting started with Nike Shop is fairly easy and simple. Follow the instructions as stated below -
 
 ### 3.1 Prerequisites
 
@@ -96,18 +101,18 @@ To test `Stripe` payment and simulate the credit-card transaction, skip step 3.
 . (Root)
 ├── public
 ├── src
-│   ├── components (folder)
-│   ├── context (folder)
-│   ├── data (folder)
-│   ├── feature (folder)
-│   ├── pages (folder)
-│   ├── route (folder)
-│   ├── services (folder)
-│   ├── store (folder)
-│   ├── theme (folder)
-│   ├── type (folder)
+│   ├── components    #(folder: Contains all components )
+│   ├── context    #(folder: Contain Alert system that used context format in the project )
+│   ├── data    #(folder: Including static and mock data )
+│   ├── feature    #(folder: Including costum hooks)
+│   ├── pages   #(folder: Including pages that used in routing)
+│   ├── route   #(folder: Manages routing logic in application )
+│   ├── services   #(folder: Api calling for user authentication )
+│   ├── store    #(folder: Including user slice, cart slice   )
+│   ├── theme    #(folder: Incuding MUI theme and styled components breakpoints)
+│   ├── type    #(folder: Including Global type)
 │   ├── App.tsx
-│   ├── config.ts
+│   ├── config.ts   # baseUrl for non-Token requests
 │   └── index.tsx
 │
 ├── .gitignore
