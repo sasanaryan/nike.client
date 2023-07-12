@@ -28,7 +28,7 @@ const useTokenRequst = () => {
 
     if (!isExpired) return req;
     try {
-      const response = await axios.post(`${Url}refreshtoken`, {
+      const response = await axios.post(`${Url}/refreshtoken`, {
         refreshToken: user?.currentUser?.refreshToken,
       });
       const newAccessToken = response.data.accessToken;
