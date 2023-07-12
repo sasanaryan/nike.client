@@ -1,6 +1,6 @@
+import { FC } from "react";
 import { Grid, Skeleton } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import { FC } from "react";
 import uuid from "react-uuid";
 
 interface ListSkeletonProp {
@@ -18,7 +18,7 @@ const ProductsSkeleton: FC<ListSkeletonProp> = ({ listsToRender }) => {
             direction="column"
             sx={{
               flexGrow: "0.5",
-              width: " 300px",
+              width: { xs: "100%", sm: " 300px" },
               maxWidth: "500px",
               margin: "10px",
             }}
