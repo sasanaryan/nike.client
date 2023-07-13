@@ -1,7 +1,7 @@
+import { useState, useEffect, memo } from "react";
 import type { FC } from "react";
 import styled from "@emotion/styled";
 import { Typography } from "@mui/material";
-import { useState, useEffect } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -61,4 +61,4 @@ const NavbarBottom: FC = () => {
   );
 };
 
-export default NavbarBottom;
+export default memo(NavbarBottom);
