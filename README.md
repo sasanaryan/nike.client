@@ -11,7 +11,7 @@
   Nike Shop is an e-commerce web app built with React.js and hosted on Netlify. This website imitates a real-world market where visitors can view products under different categories, select product for favoraite collection, serach products, add products to cart, confirm order, and see ordered products in profile page. 
   <br />
   
-  ### <a href="https:/sasan-nikeshop.netlify.app//">View Live</a> :large_blue_diamond: <a href="https:/github.com/sasanaryan/nike.client/issues">Report Bug</a>
+  ### <a href="https:/sasan-nikeshop.netlify.app/">View Live</a> :large_blue_diamond: <a href="https:/github.com/sasanaryan/nike.client/issues">Report Bug</a>
   <br />
 </div>
 
@@ -42,7 +42,7 @@
 
 ![Nike Shop Screen Shot](https://github.com/sasanaryan/nike.client/blob/main/public/assets/image/homepage.jpg?raw=true)
 
-Nike shop is an fully resposive e-commerce web app built with `React.js` and hosted on `Netlify`. The Backend api created by `node js`, `express` and `mongoDB`. This website imitates a real-world market. guest users just can view products, serach products, and add products to cart. signed-in users also can confirm order, select products for favoraite collection and see ordered with favorites products in profile page.
+<a href="https:/sasan-nikeshop.netlify.app/">Nike shop</a> is an fully resposive e-commerce web app built with `React.js` and hosted on `Netlify`. The <a href="https://github.com/sasanaryan/nike.api/">Backend api</a> created by `node js`, `express` and `mongoDB`. This website imitates a real-world market. guest users just can view products, serach products, and add products to cart. signed-in users also can confirm order, select products for favoraite collection and see ordered with favorites products in profile page.
 
 <p align="right"><a href="#readme-top">Back to Top :arrow_heading_up:</a></p>
 
@@ -112,10 +112,11 @@ Getting started with Nike Shop is fairly easy and simple. Follow the instruction
 │   └── index.tsx
 │
 ├── .gitignore
+├── craco.config.js
 ├── README.md
 ├── package-lock.json
 ├── package.json
-└──  tsconfig.json
+└── tsconfig.json
 
 
 ```
@@ -124,14 +125,12 @@ Getting started with Nike Shop is fairly easy and simple. Follow the instruction
 
 ## 5. Features
 
-- **_Home:_** A display of all `Categories` . Also includes displays `products` belonging to that `Categories`.
-- **_Authentication:_** `Register` and `login` page for user sign-in and get `AccessToken` with `RefreshToken`.
-- **_Search:_** `Search Section` is used to search among products and showing result finally by pressing the `Enter` key, the search result is transferred to a separate page with a filter option.
-- **_Categories:_** `Categories` page displaying all products related to the category with filter options.
-- **_Product:_** `Product` page displaying product information that include `title`, `imageShowCase`, `price`, `description` and `size section` for choosing size also include `favorite` and `add to cart `button.
+- **_Home:_** display of all `Categories` . Also includes displays `products` belonging to that `Categories`.
+- **_Authentication:_** `Register` and `login` page for user sign-in and get user info with `AccessToken` and `RefreshToken`.
+- **_Search:_** `Search Section` is used to search among products and showing result, finally by pressing the `Enter` key the search result is transferred to a separate page with a filters options.
+- **_Categories:_** `Categories` page displaying all products related to the category with filters options.
+- **_Product:_** `Product` page displaying product information that include `title`, `images`, `price`, `description` and `size section` for choosing size also include `favorite` and `add to cart `button.
 - **_Cart:_** Displays a list of products added to the `Cart`.
 - **_Profile:_** Displays `ordered` and `favorite` products.
-
-<p align="right"><a href="#readme-top">Back to Top :arrow_heading_up:</a></p>
 
 <p align="right"><a href="#readme-top">Back to Top :arrow_heading_up:</a></p>
