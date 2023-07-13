@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import type { FC } from "react";
-import { FilterProducts } from "type";
-import { FetchedProduct } from "type";
+import { FilterProducts, FetchedProduct } from "type";
 import Grid from "@mui/material/Unstable_Grid2";
 import { baseurl } from "config";
 import Product from "components/product";
@@ -18,7 +17,6 @@ const Products: FC<FilterProducts> = ({
   const [filter, setFilter] = useState<FetchedProduct[]>([]);
   const [filterSearch, setFilterSearch] = useState<FetchedProduct[]>([]);
   const [loading, setLoading] = useState(true);
-  console.log("products", searchWord);
 
   useEffect(() => {
     if (searchWord) {
@@ -103,7 +101,7 @@ const Products: FC<FilterProducts> = ({
   );
 };
 
-export default Products;
+export default memo(Products);
 
 interface DisplayProp {
   products: FetchedProduct[];
@@ -112,18 +110,20 @@ interface DisplayProp {
   cat?: string;
 }
 
-const Display: FC<DisplayProp> = ({ products, filter, cat, searchWord }) => {
-  return (
-    <Grid container margin={{ xs: "0px", sm: "5px" }}>
-      {cat || searchWord
-        ? filter.map((item: FetchedProduct) => (
-            <Product item={item} key={item._id} />
-          ))
-        : products
-            .slice(0, 12)
-            .map((item: FetchedProduct) => (
+const Display: FC<DisplayProp> = memo(
+  ({ products, filter, cat, searchWord }) => {
+    return (
+      <Grid container padding={{ xs: "0px", sm: "5px" }}>
+        {cat || searchWord
+          ? filter.map((item: FetchedProduct) => (
               <Product item={item} key={item._id} />
-            ))}
-    </Grid>
-  );
-};
+            ))
+          : products
+              .slice(0, 12)
+              .map((item: FetchedProduct) => (
+                <Product item={item} key={item._id} />
+              ))}
+      </Grid>
+    );
+  }
+);
