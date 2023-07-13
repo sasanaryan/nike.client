@@ -1,3 +1,4 @@
+import React from "react";
 import type { FC } from "react";
 import { Facebook, Instagram, YouTube, Twitter } from "@mui/icons-material";
 import { Stack } from "@mui/system";
@@ -121,4 +122,4 @@ const Footer: FC = () => {
   );
 };
 
-export default Footer;
+export default React.memo(Footer);
