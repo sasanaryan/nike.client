@@ -1,10 +1,11 @@
+import type { FC } from "react";
+import { memo } from "react";
 import { Typography } from "@mui/material";
 import { Stack } from "@mui/system";
-import type { FC } from "react";
 import styled from "@emotion/styled";
 import { FetchedProduct } from "type";
 import ProductInfoSkeleton from "components/skeleton/productInfoSkeleton";
-export const ImageShowCase = styled.img`
+const ImageShowCase = styled.img`
   width: 110px;
   height: 110px;
   object-fit: cover;
@@ -38,4 +39,4 @@ const ProductInfo: FC<ProductInfoProp> = ({ product, loading }) => {
   );
 };
 
-export default ProductInfo;
+export default memo(ProductInfo);
