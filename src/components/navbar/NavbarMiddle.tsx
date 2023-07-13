@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import type { FC } from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
@@ -87,4 +87,4 @@ const NavbarMiddle: FC = () => {
   );
 };
 
-export default NavbarMiddle;
+export default memo(NavbarMiddle);
