@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import type { FC } from "react";
 import styled from "@emotion/styled";
 import { Typography } from "@mui/material";
@@ -85,4 +85,4 @@ const SizeGuide: FC<SizeGuide> = ({
   );
 };
 
-export default SizeGuide;
+export default memo(SizeGuide);
