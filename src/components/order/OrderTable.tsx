@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import styled from "@emotion/styled";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,7 +8,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useAppSelector } from "store/store";
-import { outhAxios } from "config";
 import { OrderedProduct } from "type";
 import type { FC } from "react";
 import { Stack } from "@mui/system";
@@ -25,7 +24,6 @@ const ImageShowCase = styled.img`
   width: 60px;
   height: 60px;
   object-fit: cover;
-  margin: 5px;
 `;
 
 const OrderTable: FC = () => {
@@ -68,7 +66,6 @@ const OrderTable: FC = () => {
                   <TableCell align="left">
                     <ImageShowCase src={item.productImg} />
                   </TableCell>
-
                   <TableCell align="left">{item.productName}</TableCell>
                   <TableCell align="left">{item.productSize}</TableCell>
                   <TableCell align="left">{item.productPrice}</TableCell>
@@ -87,4 +84,4 @@ const OrderTable: FC = () => {
   );
 };
 
-export default OrderTable;
+export default memo(OrderTable);
