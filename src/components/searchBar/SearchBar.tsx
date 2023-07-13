@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, memo } from "react";
 import type { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
@@ -115,4 +115,4 @@ const SearchBar: FC<SearchBarProp> = ({ setOpenSearchBar, openSearchBar }) => {
   );
 };
 
-export default SearchBar;
+export default memo(SearchBar);
