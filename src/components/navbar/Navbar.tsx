@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { FC } from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
@@ -9,6 +10,7 @@ import { icons } from "data";
 import NavbarMiddle from "components/navbar/NavbarMiddle";
 import NavbarBottom from "components/navbar/NavbarBottom";
 import ProfileMenu from "components/ProfileMenu/ProfileMenu";
+import Snackbars from "components/alert";
 
 const Logo = styled.img`
   margin: 0px 5px 0px 5px;
@@ -124,8 +126,9 @@ const Navbar: FC = () => {
       </Stack>
       <NavbarMiddle />
       <NavbarBottom />
+      <Snackbars />
     </>
   );
 };
 
-export default Navbar;
+export default memo(Navbar);
