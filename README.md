@@ -11,7 +11,7 @@
   Nike Shop is an e-commerce web app built with React.js and hosted on Netlify. This website imitates a real-world market where visitors can view products under different categories, select product for favoraite collection, serach products, add products to cart, confirm order, and see ordered products in profile page. 
   <br />
   
-  ### <a href="https:/sasan-nikeshop.netlify.app//">View Live</a> :large_blue_diamond: <a href="https:/github.com/sasanaryan/nike.client/issues">Report Bug</a>
+  ### <a href="https:/sasan-nikeshop.netlify.app/" target="_blank">View Live</a> :large_blue_diamond: <a href="https:/github.com/sasanaryan/nike.client/issues">Report Bug</a>
   <br />
 </div>
 
@@ -42,7 +42,7 @@
 
 ![Nike Shop Screen Shot](https://github.com/sasanaryan/nike.client/blob/main/public/assets/image/homepage.jpg?raw=true)
 
-<a href="https:/sasan-nikeshop.netlify.app//">Nike shop</a> is an fully resposive e-commerce web app built with `React.js` and hosted on `Netlify`. The <a href="https://github.com/sasanaryan/nike.api/">Backend api</a> created by `node js`, `express` and `mongoDB`. This website imitates a real-world market. guest users just can view products, serach products, and add products to cart. signed-in users also can confirm order, select products for favoraite collection and see ordered with favorites products in profile page.
+<a href="https:/sasan-nikeshop.netlify.app/" target="_blank">Nike shop</a> is an fully resposive e-commerce web app built with `React.js` and hosted on `Netlify`. The <a href="https://github.com/sasanaryan/nike.api/">Backend api</a> created by `node js`, `express` and `mongoDB`. This website imitates a real-world market. guest users just can view products, serach products, and add products to cart. signed-in users also can confirm order, select products for favoraite collection and see ordered with favorites products in profile page.
 
 <p align="right"><a href="#readme-top">Back to Top :arrow_heading_up:</a></p>
 
