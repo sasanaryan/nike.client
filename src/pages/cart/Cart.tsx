@@ -6,7 +6,6 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Collapse, List, Typography } from "@mui/material";
 import { TransitionGroup } from "react-transition-group";
 import { useAppSelector } from "store/store";
-import { outhAxios } from "config";
 import { mobile, tablet } from "theme";
 import Navbar from "components/navbar";
 import Footer from "components/footer/Footer";

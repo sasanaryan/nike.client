@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import type { FC } from "react";
 import styled from "@emotion/styled";
 import { Stack } from "@mui/system";
@@ -126,4 +126,4 @@ const ProductImage: FC<ProductImageProp> = ({ images }) => {
   );
 };
 
-export default ProductImage;
+export default memo(ProductImage);
