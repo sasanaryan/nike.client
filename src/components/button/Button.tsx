@@ -1,5 +1,6 @@
-import styled from "@emotion/styled";
+import React from "react";
 import type { FC } from "react";
+import styled from "@emotion/styled";
 import theme from "theme";
 
 interface CustomButtonStyledProp {
@@ -43,4 +44,4 @@ const CustomButton: FC<CustomButtonProp> = ({ children, onClick, whiteBg }) => {
   );
 };
 
-export default CustomButton;
+export default React.memo(CustomButton);
