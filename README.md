@@ -41,7 +41,7 @@
 
 ## 1. About
 
- [![IMAGE ALT TEXT HERE]([https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg](https://github.com/sasanaryan/nike.client/blob/main/public/assets/image/homepage.jpg?raw=true))]([https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE](https://www.youtube.com/watch?v=G-vB2K03xL0))
+ [![IMAGE ALT TEXT HERE]([https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg](https://github.com/sasanaryan/nike.client/blob/main/public/assets/image/homepage.jpg?raw=true))](https://www.youtube.com/watch?v=G-vB2K03xL0)
 
 [Nike shop](https://sasan-nikeshop.netlify.app/) is an fully resposive e-commerce web app built with `React.js` and hosted on `Netlify`. The <a href="https://github.com/sasanaryan/nike.api/">Backend api</a> created by `node js`, `express` and `mongoDB`. This website imitates a real-world market. guest users just can view products, serach products, and add products to cart. signed-in users also can confirm order, select products for favoraite collection and see ordered with favorites products in profile page.
 
