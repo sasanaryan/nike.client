@@ -2,6 +2,7 @@
 
 <br />
 <div align="center">
+  [![IMAGE ALT TEXT HERE]([https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg](https://github.com/sasanaryan/nike.client/blob/main/public/assets/image/homepage.jpg?raw=true))]([https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE](https://www.youtube.com/watch?v=G-vB2K03xL0))
   <a href="https://github.com/sasanaryan/nike.client">
     <img src="public/assets/icon/png03.png" alt="Logo" width="120">
   </a>
